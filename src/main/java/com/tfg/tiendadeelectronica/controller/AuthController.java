@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tfg.tiendadeelectronica.DTO.JwtDTO;
 import com.tfg.tiendadeelectronica.DTO.LoginUsuario;
+import com.tfg.tiendadeelectronica.DTO.Mensaje;
 import com.tfg.tiendadeelectronica.DTO.NuevoUsuario;
 import com.tfg.tiendadeelectronica.enums.RolNombre;
 import com.tfg.tiendadeelectronica.model.Rol;
@@ -32,6 +33,7 @@ import com.tfg.tiendadeelectronica.service.UsuarioService;
 
 @RestController
 @RequestMapping("/api/auth")
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class AuthController {
 
 	@Autowired
@@ -52,11 +54,11 @@ public class AuthController {
     @PostMapping("/nuevoUsuario")
     public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return new ResponseEntity("campos vacíos o email inválido", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("campos vacíos o email inválido"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existePorNombre(nuevoUsuario.getNombreUsuario()))
-            return new ResponseEntity("ese nombre ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existePorEmail(nuevoUsuario.getEmail()))
-            return new ResponseEntity("ese email ya existe", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
         Usuario usuario = 
         		new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellidos(), nuevoUsuario.getDni(), nuevoUsuario.getTelefono1(), nuevoUsuario.getTelefono2(), nuevoUsuario.getEmail(), nuevoUsuario.getNombreUsuario(), passwordEncoder.encode(nuevoUsuario.getPassword()));
               
@@ -75,13 +77,13 @@ public class AuthController {
         }
         usuario.setRoles(roles);
         usuarioService.guardar(usuario);
-        return new ResponseEntity("usuario guardado", HttpStatus.CREATED);
+        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
     public ResponseEntity<JwtDTO> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return new ResponseEntity("campos vacíos o email inválido", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("campos vacíos o email inválido"), HttpStatus.BAD_REQUEST);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword())
         );

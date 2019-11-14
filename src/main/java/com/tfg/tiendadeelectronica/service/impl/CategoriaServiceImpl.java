@@ -1,7 +1,6 @@
 package com.tfg.tiendadeelectronica.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,32 +11,33 @@ import com.tfg.tiendadeelectronica.repository.CategoriaRepository;
 import com.tfg.tiendadeelectronica.service.CategoriaService;
 
 @Service
+@Transactional
 public class CategoriaServiceImpl implements CategoriaService{
 	
 	@Autowired
 	private CategoriaRepository categoriaDao;
 
-	@Transactional(readOnly = true)
+//	@Transactional(readOnly = true)
 	@Override
-	public List<Categoria> getCategorias(){
+	public List<Categoria> listarCategorias(){
 		return categoriaDao.findAll();
 	}
 	
-	@Transactional(readOnly = true)
+//	@Transactional(readOnly = true)
 	@Override
-	public Categoria getCategoria(Long idCategoria) {
+	public Categoria obtenerCategoria(Long idCategoria) {
 		return categoriaDao.getOne(idCategoria);
 	}
 	
-	@Transactional
+//	@Transactional
 	@Override
-	public void saveCategoria(Categoria categoria) {
+	public void guardarCategoria(Categoria categoria) {
 		categoriaDao.save(categoria);
 	}
 	
-	@Transactional
+//	@Transactional
 	@Override
-	public void updateCategoria(Categoria categoria) throws Exception {
+	public void actualizarCategoria(Categoria categoria) throws Exception {
 //		Categoria categoriaUpdate = categoriaDao.getOne(categoria.getId());
 	
 			if(categoria.getIdCategoria() != null) {
@@ -47,11 +47,20 @@ public class CategoriaServiceImpl implements CategoriaService{
 			}
 	}
 	
-	@Transactional
+//	@Transactional
 	@Override
-	public Categoria deleteCategoria(Long categoriaId) {
-		Categoria categoria = categoriaDao.getOne(categoriaId);
-		categoriaDao.delete(categoria);
-		return categoria;
+	public void eliminarCategoria(Long categoriaId) {
+		categoriaDao.deleteById(categoriaId);
+	}
+	
+//	@Transactional
+	@Override
+	public boolean existePorIdCategoria(Long idCategoria) {
+		return categoriaDao.existsById(idCategoria);
+	}
+	
+	@Override
+	public boolean existePorNombreCategoria(String nombreCategoria) {
+		return categoriaDao.existsByNombreCategoria(nombreCategoria);
 	}
 }

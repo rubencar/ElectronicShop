@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -31,7 +32,8 @@ public class Categoria implements Serializable{
 	@Column(name = "ID_CATEGORIA")
 	private Long idCategoria;
 	
-	@Column(name = "NOMBRE_CATEGORIA")
+	@Column(name = "NOMBRE_CATEGORIA", unique = true)
+	@NotBlank
 	private String nombreCategoria;
 	
 	@Column(name = "DESCRIPCION")
