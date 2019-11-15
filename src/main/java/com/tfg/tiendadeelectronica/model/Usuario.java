@@ -38,14 +38,13 @@ public class Usuario implements Serializable{
     private String apellidos;
     
     @NotNull
-    @Column(name = "DNI")
+    @Column(name = "DNI", unique = true)
     private String dni;
     
     @NotNull
-    @Column(name = "TELEFONO1")
+    @Column(name = "TELEFONO1", unique = true)
     private String telefono1;
     
-    @NotNull
     @Column(name = "TELEFONO2")
     private String telefono2;
     
@@ -70,7 +69,7 @@ public class Usuario implements Serializable{
     }
 
 	public Usuario(@NotNull String nombre, @NotNull String apellidos, @NotNull String dni, @NotNull String telefono1,
-			@NotNull String telefono2, @NotNull String email, @NotNull String nombreUsuario, @NotNull String password) {
+			String telefono2, @NotNull String email, @NotNull String nombreUsuario, @NotNull String password) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;

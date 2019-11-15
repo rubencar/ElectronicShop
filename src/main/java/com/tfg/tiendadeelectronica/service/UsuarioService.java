@@ -1,7 +1,9 @@
 package com.tfg.tiendadeelectronica.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.tfg.tiendadeelectronica.DTO.Mensaje;
 import com.tfg.tiendadeelectronica.model.Usuario;
 
 /**
@@ -9,27 +11,33 @@ import com.tfg.tiendadeelectronica.model.Usuario;
  *
  */
 public interface UsuarioService {
+
+	public Optional<Usuario> obtenerPorNombreUsuario(String nombreUsuario);
 	
-	/**
-	 * @param nombreUsuario
-	 * @return
-	 */
-	public Optional<Usuario> getByNombreUsuario(String nombreUsuario);
+	public Optional<Usuario> obtenerPorDni(String dni);
 	
-	/**
-	 * @param nombreUsuario
-	 * @return
-	 */
-	public boolean existePorNombre(String nombreUsuario);
+	public boolean existePorIdUsuario(Long idUsuario);
 	
-	/**
-	 * @param email
-	 * @return
-	 */
+	public boolean existePorNombreUsuario(String nombreUsuario);
+
 	public  boolean existePorEmail(String email);
 	
-	/**
-	 * @param usuario
-	 */
-	public void guardar(Usuario usuario);
+	public  boolean existePorDni(String dni);
+	
+	public  boolean existePorTelefono(String telefono);
+
+	public void guardarUsuario(Usuario usuario);
+	
+	public void actualizarUsuario(Usuario usuario) throws Exception;
+	
+	public void eliminarUsuario(Long idUsuario);
+	
+	public List<Usuario> listarUsuarios();
+	
+	public Usuario obtenerUsuario(Long id);
+	
+	public String comprobarValoresNoNulos(Usuario usuario);
+	
+	public String existeUsuario(Usuario usuario);
+
 }

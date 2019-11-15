@@ -10,7 +10,7 @@ import com.tfg.tiendadeelectronica.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	
-	Optional<Categoria> findByNombreCategoria(String np);
+	Optional<Categoria> findByNombreCategoria(String nombreCategoria);
 	
 	boolean existsByNombreCategoria(String nombreCategoria);
 	

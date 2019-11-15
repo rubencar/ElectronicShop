@@ -62,7 +62,6 @@ public class CategoriaController {
 			return new ResponseEntity(new Mensaje(Constantes.NOMBRE_CATEGORIA_YA_EXISTE), HttpStatus.BAD_REQUEST);
 		}
 		
-//		categoria.setIdCategoria(null);
 		categoriaService.guardarCategoria(categoria);
 		return new ResponseEntity(new Mensaje(Constantes.CATEGORIA_GUARDADA), HttpStatus.CREATED);
 	}

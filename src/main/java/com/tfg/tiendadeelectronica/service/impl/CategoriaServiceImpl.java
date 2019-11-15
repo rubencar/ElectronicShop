@@ -9,58 +9,52 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tfg.tiendadeelectronica.model.Categoria;
 import com.tfg.tiendadeelectronica.repository.CategoriaRepository;
 import com.tfg.tiendadeelectronica.service.CategoriaService;
+import com.tfg.tiendadeelectronica.utils.Constantes;
 
 @Service
 @Transactional
 public class CategoriaServiceImpl implements CategoriaService{
 	
 	@Autowired
-	private CategoriaRepository categoriaDao;
+	private CategoriaRepository categoriaRepository;
 
-//	@Transactional(readOnly = true)
 	@Override
 	public List<Categoria> listarCategorias(){
-		return categoriaDao.findAll();
+		return categoriaRepository.findAll();
 	}
 	
-//	@Transactional(readOnly = true)
 	@Override
 	public Categoria obtenerCategoria(Long idCategoria) {
-		return categoriaDao.getOne(idCategoria);
+		return categoriaRepository.getOne(idCategoria);
 	}
 	
-//	@Transactional
 	@Override
 	public void guardarCategoria(Categoria categoria) {
-		categoriaDao.save(categoria);
+		categoriaRepository.save(categoria);
 	}
 	
-//	@Transactional
 	@Override
 	public void actualizarCategoria(Categoria categoria) throws Exception {
-//		Categoria categoriaUpdate = categoriaDao.getOne(categoria.getId());
-	
+		
 			if(categoria.getIdCategoria() != null) {
-				categoriaDao.save(categoria);
+				categoriaRepository.save(categoria);
 			}else {
-				throw new Exception("Categoría no válida.");
+				throw new Exception(Constantes.CATEGORIA_NO_VALIDA);
 			}
 	}
 	
-//	@Transactional
 	@Override
 	public void eliminarCategoria(Long categoriaId) {
-		categoriaDao.deleteById(categoriaId);
+		categoriaRepository.deleteById(categoriaId);
 	}
 	
-//	@Transactional
 	@Override
 	public boolean existePorIdCategoria(Long idCategoria) {
-		return categoriaDao.existsById(idCategoria);
+		return categoriaRepository.existsById(idCategoria);
 	}
 	
 	@Override
 	public boolean existePorNombreCategoria(String nombreCategoria) {
-		return categoriaDao.existsByNombreCategoria(nombreCategoria);
+		return categoriaRepository.existsByNombreCategoria(nombreCategoria);
 	}
 }

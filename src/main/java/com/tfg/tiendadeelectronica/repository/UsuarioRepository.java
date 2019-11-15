@@ -11,8 +11,16 @@ import com.tfg.tiendadeelectronica.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	Optional<Usuario> findByNombreUsuario(String nu);
+	
+	Optional<Usuario> findByDni(String dni);
     
-	boolean existsByNombreUsuario(String nombreUsuario); //Para saber si el nombre de usuario es unico
+	boolean existsByIdUsuario(Long idUsuario);
+	
+	boolean existsByNombreUsuario(String nombreUsuario);
     
-	boolean existsByEmail(String email); //Para saber si el email de usuario es unico
+	boolean existsByEmail(String email); 
+	
+	boolean existsByDni(String dni);
+	
+	boolean existsByTelefono1(String telefono);
 }

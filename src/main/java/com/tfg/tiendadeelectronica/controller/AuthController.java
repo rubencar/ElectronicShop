@@ -55,7 +55,7 @@ public class AuthController {
     public ResponseEntity<?> nuevoUsuario(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos vacíos o email inválido"), HttpStatus.BAD_REQUEST);
-        if(usuarioService.existePorNombre(nuevoUsuario.getNombreUsuario()))
+        if(usuarioService.existePorNombreUsuario(nuevoUsuario.getNombreUsuario()))
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existePorEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
@@ -76,7 +76,7 @@ public class AuthController {
             }
         }
         usuario.setRoles(roles);
-        usuarioService.guardar(usuario);
+        usuarioService.guardarUsuario(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
