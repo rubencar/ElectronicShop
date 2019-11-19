@@ -2,6 +2,9 @@ package com.tfg.tiendadeelectronica.utils;
 
 public class Constantes {
 	
+	//Valores
+	public static final Integer IVA = 21;
+	
 	//Mensajes Categoria
 	public static final String CATEGORIA_NO_EXISTE = "No existe esa categoria.";
 	public static final String NOMBRE_CATEGORIA_OBLIGATORIO = "El nombre es obligatorio.";
@@ -36,4 +39,15 @@ public class Constantes {
 	public static final String USUARIO_ACTUALIZADO = "Usuario actualizado.";
 	public static final String USUARIO_ELIMINADO = "Usuario eliminado.";
 	public static final String USUARIO_NO_VALIDO = "Usuario no válido.";
+	
+	//Mensajes Articulos
+	public static final String ARTICULO_NO_EXISTE = "No existe ese artículo.";
+	public static final String NOMBRE_ARTICULO_OBLIGATORIO = "El nombre de artículo es obligatorio.";
+	public static final String NOMBRE_ARTICULO_YA_EXISTE = "Ese nombre de artículo no está disponible.";
+	public static final String ARTICULO_GUARDADO = "Artículo guardado.";
+	public static final String ARTICULO_ACTUALIZADO = "Artículo actualizado.";
+	public static final String ARTICULO_ELIMINADO = "Artículo eliminado.";
+	public static final String ARTICULO_NO_VALIDO = "Artículo no válido.";
+	public static final String PRECIO_NO_VALIDO = "El precio debe ser mayor o igual que 0.";
+
 }

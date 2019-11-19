@@ -26,7 +26,7 @@ import com.tfg.tiendadeelectronica.utils.Constantes;
 
 @CrossOrigin(origins = {"http://localhost:4200"}) //Puerto que usará la aplicacion Angular
 @RestController 
-@RequestMapping("/subcategoria") 
+@RequestMapping("/subcategorias") 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class SubcategoriaController {
 

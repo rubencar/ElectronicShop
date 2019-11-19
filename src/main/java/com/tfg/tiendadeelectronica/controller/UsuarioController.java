@@ -27,7 +27,7 @@ import com.tfg.tiendadeelectronica.utils.Constantes;
 
 @CrossOrigin(origins = {"http://localhost:4200"}) //Puerto que usará la aplicacion Angular
 @RestController 
-@RequestMapping("/usuario") 
+@RequestMapping("/usuarios") 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class UsuarioController {
 	

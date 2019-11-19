@@ -1,7 +1,7 @@
 package com.tfg.tiendadeelectronica.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +39,7 @@ public class Subcategoria implements Serializable{
 	private String descripcion;
 
 	@Column(name = "FECHA_ALTA")
-	private Date fechaAlta;
+	private Timestamp fechaAlta;
 	
 	@ManyToOne
 	@JoinColumn(name="idCategoria")

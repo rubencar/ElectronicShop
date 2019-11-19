@@ -1,7 +1,7 @@
 package com.tfg.tiendadeelectronica.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,14 +33,14 @@ public class Categoria implements Serializable{
 	private Long idCategoria;
 	
 	@Column(name = "NOMBRE_CATEGORIA", unique = true)
-	@NotBlank
+	@NotNull
 	private String nombreCategoria;
 	
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 
 	@Column(name = "FECHA_ALTA")
-	private Date fechaAlta;
+	private Timestamp fechaAlta;
 	
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="idCategoria")
